@@ -1,0 +1,17 @@
+<html>
+<body>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Application</th>
+			<th>Message</th>
+		</tr>
+		@Repeat(items=bugs, var="bug")
+		<tr>
+			<td><a href = "/${bug.application.name}/bugs/${bug.id}">${bug.id}</a></td>
+			<td>${bug.application.name}</td>
+			<td>${bug.message}</td>
+		</tr>
+	</table>
+</body>
+</html>
