@@ -1,12 +1,14 @@
 package org.github.sbc.storage;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import org.github.sbc.model.Application;
 import org.github.sbc.model.Bug;
+import org.github.sbc.model.Occurrence;
 
 public class TemporaryStorage
 {
@@ -18,8 +20,20 @@ public class TemporaryStorage
 
 		Application application = new Application( "doit" );
 
-		bugs.put( 1, new Bug( 1, application, "erro 1", "stack trace", "module a" ) );
-		bugs.put( 2, new Bug( 2, application, "erro 2", "stack trace", "module b" ) );
+		Bug bug = new Bug( 1, application, "erro 1", "stack trace", "module a" );
+
+		bug.addOccurrence( new Occurrence( "1.1", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "1.2", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "1.3", null, new Date(), null, null ) );
+
+		bugs.put( 1, bug );
+
+		bug = new Bug( 2, application, "erro 2", "stack trace", "module b" );
+
+		bug.addOccurrence( new Occurrence( "3.0.1", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "2.0", null, new Date(), null, null ) );
+
+		bugs.put( 2, bug );
 
 		allBugs.put( application.getName(), bugs );
 
@@ -27,7 +41,15 @@ public class TemporaryStorage
 
 		application = new Application( "smiles" );
 
-		bugs.put( 1, new Bug( 1, application, "erro 1", "stack trace", null ) );
+		bug = new Bug( 1, application, "erro 1", "stack trace", null );
+
+		bug.addOccurrence( new Occurrence( "2.0", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "2.0", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "2.0", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "2.0", null, new Date(), null, null ) );
+		bug.addOccurrence( new Occurrence( "2.0", null, new Date(), null, null ) );
+
+		bugs.put( 1, bug );
 
 		allBugs.put( application.getName(), bugs );
 	}

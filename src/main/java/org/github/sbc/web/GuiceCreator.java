@@ -1,6 +1,6 @@
 package org.github.sbc.web;
 
-import org.github.sbc.pages.Summary;
+import org.github.sbc.pages.SummaryPage;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -17,7 +17,7 @@ public class GuiceCreator extends GuiceServletContextListener
 			@Override
 			protected void configureSitebricks()
 			{
-				scan( Summary.class.getPackage() );
+				scan( SummaryPage.class.getPackage() );
 			}
 		} );
 	}
