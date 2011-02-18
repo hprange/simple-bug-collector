@@ -5,15 +5,19 @@ import java.util.Map;
 
 public class Occurrence
 {
-	private final String version;
+	private String version;
 
-	private final User user;
+	private User user;
 
-	private final Date date;
+	private Date date;
 
-	private final String comments;
+	private String comments;
 
-	private final Map<String, String> additionalData;
+	private Map<String, String> additionalData;
+
+	public Occurrence()
+	{
+	}
 
 	public Occurrence( String version, User user, Date date, String comments, Map<String, String> additionalData )
 	{
@@ -49,5 +53,30 @@ public class Occurrence
 	public String getVersion()
 	{
 		return version;
+	}
+
+	public void setAdditionalData( Map<String, String> additionalData )
+	{
+		this.additionalData = additionalData;
+	}
+
+	public void setComments( String comments )
+	{
+		this.comments = comments;
+	}
+
+	public void setDate( Date date )
+	{
+		this.date = date;
+	}
+
+	public void setUser( User user )
+	{
+		this.user = user;
+	}
+
+	public void setVersion( String version )
+	{
+		this.version = version;
 	}
 }

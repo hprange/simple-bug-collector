@@ -3,19 +3,26 @@ package org.github.sbc.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Bug
 {
-	private final Integer id;
+	private Integer id;
 
-	private final Application application;
+	private Application application;
 
-	private final String message;
+	private String message;
 
-	private final String stackTrace;
+	private String stackTrace;
 
-	private final String module;
+	private String module;
 
-	private final Set<Occurrence> occurrences;
+	private Set<Occurrence> occurrences = new HashSet<Occurrence>();
+
+	public Bug()
+	{
+	}
 
 	public Bug( Integer id, Application application, String message, String stackTrace, String module )
 	{
@@ -26,7 +33,7 @@ public class Bug
 		this.message = message;
 		this.stackTrace = stackTrace;
 		this.module = module;
-		this.occurrences = new HashSet<Occurrence>();
+
 	}
 
 	public boolean addOccurrence( Occurrence occurrence )
@@ -67,5 +74,35 @@ public class Bug
 	public boolean removeOccurence( Occurrence occurrence )
 	{
 		return occurrences.remove( occurrence );
+	}
+
+	public void setApplication( Application application )
+	{
+		this.application = application;
+	}
+
+	public void setId( Integer id )
+	{
+		this.id = id;
+	}
+
+	public void setMessage( String message )
+	{
+		this.message = message;
+	}
+
+	public void setModule( String module )
+	{
+		this.module = module;
+	}
+
+	protected void setOccurrences( Set<Occurrence> occurrences )
+	{
+		this.occurrences = occurrences;
+	}
+
+	public void setStackTrace( String stackTrace )
+	{
+		this.stackTrace = stackTrace;
 	}
 }

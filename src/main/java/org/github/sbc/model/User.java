@@ -2,13 +2,16 @@ package org.github.sbc.model;
 
 public class User
 {
-	private final String name;
+	private String name;
 
-	private final String email;
+	private String email;
+
+	public User()
+	{
+	}
 
 	public User( String name, String email )
 	{
-		super();
 		this.name = name;
 		this.email = email;
 	}
@@ -21,5 +24,15 @@ public class User
 	public String getName()
 	{
 		return name;
+	}
+
+	public void setEmail( String email )
+	{
+		this.email = email;
+	}
+
+	public void setName( String name )
+	{
+		this.name = name;
 	}
 }

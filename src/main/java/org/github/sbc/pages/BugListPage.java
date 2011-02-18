@@ -17,6 +17,8 @@ public class BugListPage
 
 	private final TemporaryStorage storage;
 
+	private Bug bug;
+
 	@Inject
 	public BugListPage( TemporaryStorage storage )
 	{
