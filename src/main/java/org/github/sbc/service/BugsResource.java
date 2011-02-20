@@ -37,7 +37,7 @@ public class BugsResource
 	}
 
 	@PUT
-	@Consumes( MediaType.APPLICATION_JSON )
+	@Consumes( { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
 	public Response createBug( @PathParam( "application" ) String applicationName, CrashReport report )
 	{
 		Integer bugId = storage.saveCrashReport( applicationName, report );
@@ -49,7 +49,7 @@ public class BugsResource
 
 	@GET
 	@Path( "{id}" )
-	@Produces( MediaType.APPLICATION_JSON )
+	@Produces( { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
 	public Bug getBug( @PathParam( "application" ) String application, @PathParam( "id" ) Integer id )
 	{
 		return storage.bugForId( application, id );
