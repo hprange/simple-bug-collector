@@ -2,6 +2,7 @@ package org.github.sbc.web;
 
 import org.github.sbc.pages.SummaryPage;
 import org.github.sbc.service.BugsResource;
+import org.github.sbc.service.BugsService;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -15,22 +16,23 @@ public class GuiceCreator extends GuiceServletContextListener
 	@Override
 	public Injector getInjector()
 	{
-		return Guice.createInjector( new JerseyServletModule()
+		return Guice.createInjector(new JerseyServletModule()
 		{
 			@Override
 			protected void configureServlets()
 			{
-				bind( BugsResource.class );
+				bind(BugsResource.class);
 
-				serve( "/api/*" ).with( GuiceContainer.class );
+				serve("/api/*").with(GuiceContainer.class);
 			}
 		}, new SimpleBugCollectorModule(), new SitebricksModule()
 		{
 			@Override
 			protected void configureSitebricks()
 			{
-				scan( SummaryPage.class.getPackage() );
+				scan(SummaryPage.class.getPackage());
+				scan(BugsService.class.getPackage());
 			}
-		} );
+		});
 	}
 }
