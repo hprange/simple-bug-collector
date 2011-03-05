@@ -48,6 +48,10 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.2.2</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>simple-bug-collector-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

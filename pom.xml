@@ -9,6 +9,7 @@
 
     <modules>
         <module>simple-bug-collector-server</module>
+        <module>simple-bug-collector-api</module>
     </modules>
 
     <properties>
@@ -26,4 +27,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>simple-bug-collector-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
