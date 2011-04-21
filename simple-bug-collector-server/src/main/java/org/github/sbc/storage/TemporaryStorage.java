@@ -7,12 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.github.sbc.api.CrashReport;
 import org.github.sbc.model.Application;
 import org.github.sbc.model.Bug;
 import org.github.sbc.model.Occurrence;
 
-public class TemporaryStorage
+import com.github.sbc.api.CrashReport;
+
+public class TemporaryStorage implements Storage
 {
 	private final Map<String, Map<Integer, Bug>> allBugs = new HashMap<String, Map<Integer, Bug>>();
 
@@ -62,21 +63,25 @@ public class TemporaryStorage
 		allBugs.put( application.getName(), bugs );
 	}
 
+	@Override
 	public Set<String> allApplications()
 	{
 		return allBugs.keySet();
 	}
 
+	@Override
 	public Collection<Bug> allBugs( String application )
 	{
 		return allBugs.get( application ).values();
 	}
 
+	@Override
 	public Bug bugForId( String application, Integer id )
 	{
 		return allBugs.get( application ).get( id );
 	}
 
+	@Override
 	public Integer saveCrashReport( String applicationName, CrashReport report )
 	{
 		Bug bug = new Bug();

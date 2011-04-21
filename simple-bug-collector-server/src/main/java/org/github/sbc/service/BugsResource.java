@@ -12,10 +12,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import org.github.sbc.api.CrashReport;
 import org.github.sbc.model.Bug;
 import org.github.sbc.storage.TemporaryStorage;
 
+import com.github.sbc.api.CrashReport;
 import com.google.inject.Inject;
 
 /**

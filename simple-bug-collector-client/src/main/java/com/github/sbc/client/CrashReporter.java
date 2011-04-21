@@ -2,8 +2,8 @@ package com.github.sbc.client;
 
 import javax.ws.rs.core.MediaType;
 
-import org.github.sbc.api.CrashReport;
 
+import com.github.sbc.api.CrashReport;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;

@@ -10,7 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.github.sbc.api.CrashReport;
+import com.github.sbc.api.CrashReport;
 
 /**
  * @author <a href="mailto:hprange@gmail.com">Henrique Prange</a>

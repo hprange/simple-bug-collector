@@ -6,13 +6,13 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.github.sbc.api.CrashReport;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.github.sbc.api.CrashReport;
 import com.github.sbc.stub.StubBugsResource;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;

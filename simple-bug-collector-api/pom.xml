@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>simple-bug-collector</artifactId>
-    <groupId>com.github</groupId>
-    <version>0.1-SNAPSHOT</version>
-  </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>simple-bug-collector</artifactId>
+        <groupId>com.github</groupId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>simple-bug-collector-api</artifactId>
-  <name>Simple Bug Collector API</name>
+    <artifactId>simple-bug-collector-api</artifactId>
+    <name>Simple Bug Collector API</name>
     <description>The basic API shared by the client and the server side of the bug collector.</description>
 </project>

@@ -6,6 +6,7 @@ import org.github.sbc.service.BugsService;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.sitebricks.SitebricksModule;
 import com.sun.jersey.guice.JerseyServletModule;
@@ -16,23 +17,23 @@ public class GuiceCreator extends GuiceServletContextListener
 	@Override
 	public Injector getInjector()
 	{
-		return Guice.createInjector(new JerseyServletModule()
+		return Guice.createInjector( new JerseyServletModule()
 		{
 			@Override
 			protected void configureServlets()
 			{
-				bind(BugsResource.class);
+				bind( BugsResource.class );
 
-				serve("/api/*").with(GuiceContainer.class);
+				serve( "/api/*" ).with( GuiceContainer.class );
 			}
-		}, new SimpleBugCollectorModule(), new SitebricksModule()
+		}, new SimpleBugCollectorModule(), new JpaPersistModule( "simple-bug-collector-db" ), new SitebricksModule()
 		{
 			@Override
 			protected void configureSitebricks()
 			{
-				scan(SummaryPage.class.getPackage());
-				scan(BugsService.class.getPackage());
+				scan( SummaryPage.class.getPackage() );
+				scan( BugsService.class.getPackage() );
 			}
-		});
+		} );
 	}
 }

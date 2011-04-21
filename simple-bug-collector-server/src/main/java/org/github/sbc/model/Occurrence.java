@@ -3,8 +3,15 @@ package org.github.sbc.model;
 import java.util.Date;
 import java.util.Map;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Occurrence
 {
+	@Id
+	private Long id;
+
 	private String version;
 
 	private User user;
@@ -45,6 +52,11 @@ public class Occurrence
 		return date;
 	}
 
+	public Long getId()
+	{
+		return id;
+	}
+
 	public User getUser()
 	{
 		return user;
@@ -68,6 +80,11 @@ public class Occurrence
 	public void setDate( Date date )
 	{
 		this.date = date;
+	}
+
+	public void setId( Long id )
+	{
+		this.id = id;
 	}
 
 	public void setUser( User user )

@@ -3,11 +3,13 @@ package org.github.sbc.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@XmlRootElement
+@Entity
 public class Bug
 {
+	@Id
 	private Integer id;
 
 	private Application application;
