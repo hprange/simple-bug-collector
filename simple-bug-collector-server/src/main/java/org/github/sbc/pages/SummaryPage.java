@@ -6,13 +6,13 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanComparator;
-import org.github.sbc.storage.TemporaryStorage;
+import org.github.sbc.storage.Storage;
 
 import com.google.inject.Inject;
 import com.google.sitebricks.At;
 import com.google.sitebricks.http.Get;
 
-@At( "/" )
+@At("/")
 public class SummaryPage
 {
 	public static class Application
@@ -21,7 +21,7 @@ public class SummaryPage
 
 		private final int numberOfBugs;
 
-		public Application( String name, int numberOfBugs )
+		public Application(String name, int numberOfBugs)
 		{
 			super();
 
@@ -40,18 +40,18 @@ public class SummaryPage
 		}
 	}
 
-	private String sortOrder;
+	private Application application;
 
 	private List<Application> applications;
 
-	private final TemporaryStorage storage;
-
-	private Application application;
-
 	private String sortField;
 
+	private String sortOrder;
+
+	private final Storage storage;
+
 	@Inject
-	public SummaryPage( TemporaryStorage storage )
+	public SummaryPage(Storage storage)
 	{
 		this.storage = storage;
 	}
@@ -61,22 +61,22 @@ public class SummaryPage
 	{
 		List<Application> applications = new ArrayList<Application>();
 
-		for( String application : storage.allApplications() )
+		for(String application : storage.allApplications())
 		{
-			applications.add( new Application( application, storage.allBugs( application ).size() ) );
+			applications.add(new Application(application, storage.allBugs(application).size()));
 		}
 
-		if( sortField != null )
+		if(sortField != null)
 		{
-			@SuppressWarnings( "unchecked" )
-			Comparator<Application> comparator = new BeanComparator( "name" );
+			@SuppressWarnings("unchecked")
+			Comparator<Application> comparator = new BeanComparator("name");
 
-			if( "desc".equals( sortOrder ) )
+			if("desc".equals(sortOrder))
 			{
-				comparator = Collections.reverseOrder( comparator );
+				comparator = Collections.reverseOrder(comparator);
 			}
 
-			Collections.sort( applications, comparator );
+			Collections.sort(applications, comparator);
 		}
 
 		this.applications = applications;
@@ -102,17 +102,17 @@ public class SummaryPage
 		return sortOrder;
 	}
 
-	public void setApplication( Application application )
+	public void setApplication(Application application)
 	{
 		this.application = application;
 	}
 
-	public void setSortField( String sortField )
+	public void setSortField(String sortField)
 	{
 		this.sortField = sortField;
 	}
 
-	public void setSortOrder( String sortOrder )
+	public void setSortOrder(String sortOrder)
 	{
 		this.sortOrder = sortOrder;
 	}

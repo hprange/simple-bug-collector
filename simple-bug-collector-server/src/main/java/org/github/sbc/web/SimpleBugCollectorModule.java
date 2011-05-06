@@ -1,15 +1,15 @@
 package org.github.sbc.web;
 
-import org.github.sbc.storage.TemporaryStorage;
+import org.github.sbc.storage.JpaStorage;
+import org.github.sbc.storage.Storage;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Singleton;
 
 public class SimpleBugCollectorModule extends AbstractModule
 {
 	@Override
 	protected void configure()
 	{
-		bind( TemporaryStorage.class ).in( Singleton.class );
+		bind(Storage.class).to(JpaStorage.class);
 	}
 }

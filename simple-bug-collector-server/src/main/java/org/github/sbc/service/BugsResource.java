@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.github.sbc.model.Bug;
-import org.github.sbc.storage.TemporaryStorage;
+import org.github.sbc.storage.Storage;
 
 import com.github.sbc.api.CrashReport;
 import com.google.inject.Inject;
@@ -21,15 +21,15 @@ import com.google.inject.Inject;
 /**
  * @author <a href="mailto:hprange@gmail.com">Henrique Prange</a>
  */
-@Path( "/{application}/bugs" )
+@Path("/{application}/bugs")
 public class BugsResource
 {
+	private final Storage storage;
+
 	private final UriInfo uriInfo;
 
-	private final TemporaryStorage storage;
-
 	@Inject
-	public BugsResource( @Context UriInfo uriInfo, TemporaryStorage storage )
+	public BugsResource(@Context UriInfo uriInfo, Storage storage)
 	{
 		this.uriInfo = uriInfo;
 		this.storage = storage;
@@ -37,21 +37,21 @@ public class BugsResource
 	}
 
 	@PUT
-	@Consumes( { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
-	public Response createBug( @PathParam( "application" ) String applicationName, CrashReport report )
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Response createBug(@PathParam("application") String applicationName, CrashReport report)
 	{
-		Integer bugId = storage.saveCrashReport( applicationName, report );
+		Integer bugId = storage.saveCrashReport(applicationName, report);
 
 		UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
 
-		return Response.created( uriBuilder.path( bugId.toString() ).build() ).build();
+		return Response.created(uriBuilder.path(bugId.toString()).build()).build();
 	}
 
 	@GET
-	@Path( "{id}" )
-	@Produces( { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
-	public Bug getBug( @PathParam( "application" ) String application, @PathParam( "id" ) Integer id )
+	@Path("{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Bug getBug(@PathParam("application") String application, @PathParam("id") Integer id)
 	{
-		return storage.bugForId( application, id );
+		return storage.bugForId(application, id);
 	}
 }
