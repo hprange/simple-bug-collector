@@ -1,6 +1,7 @@
 package org.github.sbc.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 public class Application
 {
 	@Id
+	@GeneratedValue
 	private Integer id;
 
 	private String name;
@@ -18,9 +20,14 @@ public class Application
 	{
 	}
 
-	public Application( String name )
+	public Application(String name)
 	{
 		this.name = name;
+	}
+
+	public Integer getId()
+	{
+		return id;
 	}
 
 	public String getName()
@@ -28,7 +35,12 @@ public class Application
 		return name;
 	}
 
-	public void setName( String name )
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
+
+	public void setName(String name)
 	{
 		this.name = name;
 	}

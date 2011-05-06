@@ -3,30 +3,41 @@ package org.github.sbc.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Bug
 {
-	@Id
-	private Integer id;
-
+	@ManyToOne
+	@JoinColumn(name = "APPLICATION_ID")
 	private Application application;
 
-	private String message;
+	@Id
+	@GeneratedValue
+	private Integer id;
 
-	private String stackTrace;
+	@Column(columnDefinition = "text")
+	private String message;
 
 	private String module;
 
+	@OneToMany(mappedBy = "bug")
 	private Set<Occurrence> occurrences = new HashSet<Occurrence>();
+
+	@Column(columnDefinition = "text")
+	private String stackTrace;
 
 	public Bug()
 	{
 	}
 
-	public Bug( Integer id, Application application, String message, String stackTrace, String module )
+	public Bug(Integer id, Application application, String message, String stackTrace, String module)
 	{
 		super();
 
@@ -38,9 +49,9 @@ public class Bug
 
 	}
 
-	public boolean addOccurrence( Occurrence occurrence )
+	public boolean addOccurrence(Occurrence occurrence)
 	{
-		return occurrences.add( occurrence );
+		return occurrences.add(occurrence);
 	}
 
 	public Application getApplication()
@@ -73,37 +84,37 @@ public class Bug
 		return stackTrace;
 	}
 
-	public boolean removeOccurence( Occurrence occurrence )
+	public boolean removeOccurence(Occurrence occurrence)
 	{
-		return occurrences.remove( occurrence );
+		return occurrences.remove(occurrence);
 	}
 
-	public void setApplication( Application application )
+	public void setApplication(Application application)
 	{
 		this.application = application;
 	}
 
-	public void setId( Integer id )
+	public void setId(Integer id)
 	{
 		this.id = id;
 	}
 
-	public void setMessage( String message )
+	public void setMessage(String message)
 	{
 		this.message = message;
 	}
 
-	public void setModule( String module )
+	public void setModule(String module)
 	{
 		this.module = module;
 	}
 
-	protected void setOccurrences( Set<Occurrence> occurrences )
+	protected void setOccurrences(Set<Occurrence> occurrences)
 	{
 		this.occurrences = occurrences;
 	}
 
-	public void setStackTrace( String stackTrace )
+	public void setStackTrace(String stackTrace)
 	{
 		this.stackTrace = stackTrace;
 	}
