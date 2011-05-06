@@ -29,10 +29,12 @@ import com.sun.jersey.test.framework.spi.container.TestContainerException;
  * TODO: Exception if an error occur while collecting the crash report
  * <p>
  * TODO: Exception if report using a wrong application name
+ * <p>
+ * TODO: Exception ir wrong URL (404)
  * 
  * @author <a href="mailto:hprange@gmail.com">Henrique Prange</a>
  */
-@RunWith( MockitoJUnitRunner.class )
+@RunWith(MockitoJUnitRunner.class)
 public class TestCrashReportCollector extends JerseyTest
 {
 	@Mock
@@ -40,24 +42,24 @@ public class TestCrashReportCollector extends JerseyTest
 
 	public TestCrashReportCollector() throws TestContainerException
 	{
-		super( StubBugsResource.class.getPackage().getName() );
+		super(StubBugsResource.class.getPackage().getName());
 	}
 
 	@Test
 	public void sendCrashReport() throws Exception
 	{
-		WebResource resource = spy( resource() );
+		WebResource resource = spy(resource());
 
-		when( mockClient.resource( Mockito.anyString() ) ).thenReturn( resource );
+		when(mockClient.resource(Mockito.anyString())).thenReturn(resource);
 
-		CrashReporter reporter = new CrashReporter( "resource-url", "applicationId", mockClient );
+		CrashReporter reporter = new CrashReporter("resource-url", "applicationId", mockClient);
 
 		CrashReport mockReport = new CrashReport();
 
-		Long result = reporter.record( mockReport );
+		Long result = reporter.record(mockReport);
 
-		assertThat( result, is( 1L ) );
+		assertThat(result, is(1L));
 
-		verify( mockClient ).resource( "resource-url" );
+		verify(mockClient).resource("resource-url");
 	}
 }
